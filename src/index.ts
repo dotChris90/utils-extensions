@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/prefer-spread */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-extend-native */
 /* eslint-disable no-plusplus */
@@ -13,6 +14,8 @@ declare global {
   interface Set<T> {
     copyAsSet() : Set<T>;
     copyAsArray() : T[];
+    addArray(arr : T[]) : void;
+    delArray(arr : T[]) : void;
   }
   interface Array<T> {
     copyAsSet() : Set<T>;
@@ -21,7 +24,26 @@ declare global {
   interface Map<K,V> {
     getKeysAsArray() : K[];
     getValuesAsArray() : V[];
- }
+    mergeWithMap2NewMap(map2 : Map<K,V>) : Map<K,V>;
+  }
+}
+if (!Set.prototype.addArray) {
+  Set.prototype.addArray = function<T>(this : Set<T>, arr : T[]) : void {
+    for(const element of arr) 
+      this.add(element);
+  }
+}
+if (!Set.prototype.delArray) {
+  Set.prototype.delArray = function<T>(this : Set<T>, arr : T[]) : void {
+    for(const element of arr) 
+      if (this.has(element))
+        this.delete(element);
+  }
+}
+if (!Map.prototype.mergeWithMap2NewMap) {
+  Map.prototype.mergeWithMap2NewMap = function<K,V>(this : Map<K,V>,map2 : Map<K,V>) : Map<K,V>{
+    return new Map([...Array.from(this.entries()), ...Array.from(map2.entries())]);
+  }
 }
 if (!Map.prototype.getKeysAsArray) {
   Map.prototype.getKeysAsArray = function<K,V>(this : Map<K,V>) : K[] {
