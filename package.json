@@ -1,6 +1,6 @@
 {
   "name": "@dotchris90/utils-extensions",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Extension methods for standard types",
   "main": "dist/utils-extensions.js",
   "umd:main": "dist/utils-extensions.umd.js",
