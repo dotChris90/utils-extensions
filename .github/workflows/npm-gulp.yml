@@ -26,6 +26,7 @@ jobs:
       run: |
         npm install
         npm run build
+        python3 --version
     - name: Test
       run: |
         npm run test
@@ -48,6 +49,7 @@ jobs:
       run: |
         npm install
         npm run build
+        python3 --version
     - name: Test
       run: |
         npm run test
@@ -70,6 +72,8 @@ jobs:
       run: |
         npm install
         npm run build
+        python3 --version
     - name: Test
       run: |
         npm run test
+
