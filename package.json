@@ -1,6 +1,6 @@
 {
   "name": "@dotchris90/utils-extensions",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Extension methods for standard types",
   "main": "dist/utils-extensions.js",
   "umd:main": "dist/utils-extensions.umd.js",
@@ -10,8 +10,11 @@
     "readme.md"
   ],
   "types": "dist/index.d.ts",
-  "dependencies": {},
+  "dependencies": {
+    "glob": "^8.0.3"
+  },
   "devDependencies": {
+    "@types/glob": "^8.0.0",
     "@types/jest": "^26.0.14",
     "@typescript-eslint/eslint-plugin": "^4.1.1",
     "@typescript-eslint/parser": "^4.1.1",

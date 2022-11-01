@@ -1,7 +1,10 @@
 /* eslint-disable unicorn/prefer-spread */
 /* eslint-disable no-restricted-syntax */
 
+import * as glob from 'glob';
+
 export class Utils {
+    
     public static GetMapValuesFlat<Key,Value>(map : Map<Key,Value[]>) : Value[] {
         const keys : Value[] = [];
         const keysSet : Set<Value> = new Set<Value>();
@@ -15,5 +18,19 @@ export class Utils {
             keys.push(element);
         }
         return keys;
+    }
+
+    public static searchPathRecursive(pattern : string[], cwd : string) : string[] {
+        let results : string[] = [];
+        for(const patternIdx of pattern) {
+            const srcSearch = new glob.GlobSync(patternIdx,{
+                "cwd" : cwd
+            });
+            const buffer : string[] = [];
+            for(const res of srcSearch.found)
+                buffer.push(res);
+            results = results.concat(buffer);
+        } 
+        return results;
     }
 }
